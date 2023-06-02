@@ -12,7 +12,7 @@ Follow the steps below to set up and run the application:
 
 Clone the repository to your local machine:
 
-`git clone https://github.com/your-username/hibernate-spring-boot.git
+`git clone https://github.com/ranasl62/waa-lab
 `
 
 Start the PostgreSQL and pgAdmin containers using Docker Compose. Run the following command in the project root directory:
