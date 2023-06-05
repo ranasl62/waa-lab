@@ -2,9 +2,9 @@ package miu.edu.lab.service.v1;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import miu.edu.lab.domain.v1.Comment;
-import miu.edu.lab.domain.v1.Post;
-import miu.edu.lab.domain.v1.User;
+import miu.edu.lab.domain.v1.CommentEntity;
+import miu.edu.lab.domain.v1.PostEntity;
+import miu.edu.lab.domain.v1.UserEntity;
 import miu.edu.lab.dto.v1.CommentDto;
 import miu.edu.lab.dto.v1.PostDto;
 import miu.edu.lab.dto.v1.UserDto;
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void create(User p) {
+    public void create(UserEntity p) {
         this.userRepo.save(p);
     }
 
@@ -51,21 +51,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(long id, User user) {
-        User existingUser = userRepo.findById(id)
+    public void update(long id, UserEntity userEntity) {
+        UserEntity existingUserEntity = userRepo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with ID: " + id));
         try {
-            BeanUtils.copyProperties(existingUser, user);
+            BeanUtils.copyProperties(existingUserEntity, userEntity);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        userRepo.save(existingUser);
+        userRepo.save(existingUserEntity);
     }
 
     @Override
     public List<PostDto> getPostByUserId(long id) {
-        this.userRepo.getById(id).getPosts().forEach(System.out::println);
-        return (List<PostDto>) listMapper.mapList(this.userRepo.getById(id).getPosts(), new PostDto());
+        this.userRepo.getById(id).getPostEntities().forEach(System.out::println);
+        return (List<PostDto>) listMapper.mapList(this.userRepo.getById(id).getPostEntities(), new PostDto());
     }
 
     @Override
@@ -74,12 +74,12 @@ public class UserServiceImpl implements UserService {
     }
 
     public CommentDto getComment(long userId, long postId, long commentId) {
-        Optional<User> userOptional = userRepo.findById(userId);
+        Optional<UserEntity> userOptional = userRepo.findById(userId);
         if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            Post post = user.findPostById(postId);
-            if (post != null) {
-                Comment comment = post.findCommentById(commentId);
+            UserEntity userEntity = userOptional.get();
+            PostEntity postEntity = userEntity.findPostById(postId);
+            if (postEntity != null) {
+                CommentEntity comment = postEntity.findCommentById(commentId);
                 if (comment != null) {
                     // Assuming CommentDto is a DTO class for Comment
                     return modelMapper.map(comment, CommentDto.class);

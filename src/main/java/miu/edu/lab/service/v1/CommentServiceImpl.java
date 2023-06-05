@@ -2,8 +2,8 @@ package miu.edu.lab.service.v1;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import miu.edu.lab.domain.v1.Comment;
-import miu.edu.lab.domain.v1.Post;
+import miu.edu.lab.domain.v1.CommentEntity;
+import miu.edu.lab.domain.v1.PostEntity;
 import miu.edu.lab.dto.v1.CommentDto;
 import miu.edu.lab.helper.ListMapper;
 import miu.edu.lab.repo.v1.CommentRepo;
@@ -40,10 +40,10 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void create(Long postId, Comment comment) {
-        Optional<Post> post = postRepo.findById(postId);
+    public void create(Long postId, CommentEntity comment) {
+        Optional<PostEntity> post = postRepo.findById(postId);
         if (post.isPresent()) {
-            comment.setPost(post.get());
+            comment.setPostEntity(post.get());
             commentRepo.save(comment);
         }
     }
@@ -54,8 +54,8 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void update(long id, Comment comment) {
-        Comment existingComment = commentRepo.findById(id)
+    public void update(long id, CommentEntity comment) {
+        CommentEntity existingComment = commentRepo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Comment not found with ID: " + id));
 
         try {
@@ -67,7 +67,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void addCommentByUserId(long id, Comment comment) {
+    public void addCommentByUserId(long id, CommentEntity comment) {
 
     }
 }

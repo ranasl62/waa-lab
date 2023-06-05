@@ -13,17 +13,17 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User extends BaseDomain {
+public class UserEntity extends BaseDomain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     String name;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Post> posts;
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
+    private List<PostEntity> postEntities;
 
-    public Post findPostById(long postId) {
-        return posts.stream()
+    public PostEntity findPostById(long postId) {
+        return postEntities.stream()
                 .filter(post -> post.getId() == postId)
                 .findFirst()
                 .orElse(null);

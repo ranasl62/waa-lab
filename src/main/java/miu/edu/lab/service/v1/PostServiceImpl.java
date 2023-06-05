@@ -2,9 +2,9 @@ package miu.edu.lab.service.v1;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import miu.edu.lab.domain.v1.Comment;
-import miu.edu.lab.domain.v1.Post;
-import miu.edu.lab.domain.v1.User;
+import miu.edu.lab.domain.v1.CommentEntity;
+import miu.edu.lab.domain.v1.PostEntity;
+import miu.edu.lab.domain.v1.UserEntity;
 import miu.edu.lab.dto.v1.PostDto;
 import miu.edu.lab.helper.ListMapper;
 import miu.edu.lab.repo.v1.PostRepo;
@@ -41,12 +41,12 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void create(Long userId, Post post) {
-        System.out.println(post);
-        Optional<User> user = userRepos.findById(userId);
-        if (user.isPresent() && post != null) {
-            post.setUser(user.get());
-            postRepo.save(post);
+    public void create(Long userId, PostEntity postEntity) {
+        System.out.println(postEntity);
+        Optional<UserEntity> user = userRepos.findById(userId);
+        if (user.isPresent() && postEntity != null) {
+            postEntity.setUserEntity(user.get());
+            postRepo.save(postEntity);
         }
 
     }
@@ -57,25 +57,25 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void update(long id, Post post) {
-        Post existingPost = postRepo.findById(id)
+    public void update(long id, PostEntity postEntity) {
+        PostEntity existingPostEntity = postRepo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Post not found with ID: " + id));
 
         try {
-            BeanUtils.copyProperties(existingPost, post);
+            BeanUtils.copyProperties(existingPostEntity, postEntity);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        postRepo.save(existingPost);
+        postRepo.save(existingPostEntity);
     }
 
     @Override
-    public void addPostByUserId(long id, Post post) {
+    public void addPostByUserId(long id, PostEntity postEntity) {
 
     }
 
-    public void addCommentToPost(Post post, Comment comment) {
-        post.getComments().add(comment);
-        postRepo.save(post);
+    public void addCommentToPost(PostEntity postEntity, CommentEntity comment) {
+        postEntity.getComments().add(comment);
+        postRepo.save(postEntity);
     }
 }

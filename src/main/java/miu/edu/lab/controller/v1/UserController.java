@@ -1,6 +1,7 @@
 package miu.edu.lab.controller.v1;
 
-import miu.edu.lab.domain.v1.User;
+import miu.edu.lab.aspect.v1.ExecutionTime;
+import miu.edu.lab.domain.v1.UserEntity;
 import miu.edu.lab.dto.v1.CommentDto;
 import miu.edu.lab.dto.v1.PostDto;
 import miu.edu.lab.dto.v1.UserDto;
@@ -32,6 +33,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @ExecutionTime
     public ResponseEntity<Response<UserDto>> getById(@PathVariable long id) {
         UserDto user = userService.getById(id);
         if (user != null) {
@@ -44,15 +46,15 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<Response<UserDto>> create(@RequestBody User user) {
-        userService.create(user);
+    public ResponseEntity<Response<UserDto>> create(@RequestBody UserEntity userEntity) {
+        userService.create(userEntity);
         Response<UserDto> response = new Response<>(true, "User created successfully", null);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Response<Long>> update(@PathVariable long id, @RequestBody User user) {
-        userService.update(id, user);
+    public ResponseEntity<Response<Long>> update(@PathVariable long id, @RequestBody UserEntity userEntity) {
+        userService.update(id, userEntity);
         Response<Long> response = new Response<>(true, "User updated successfully", id);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

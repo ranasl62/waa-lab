@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "posts")
-public class Post  extends BaseDomain {
+public class PostEntity extends BaseDomain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
@@ -23,12 +23,12 @@ public class Post  extends BaseDomain {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserEntity userEntity;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "post_id")
-    private List<Comment> comments;
-    public Comment findCommentById(long commentId) {
+    private List<CommentEntity> comments;
+    public CommentEntity findCommentById(long commentId) {
         return comments.stream()
                 .filter(comment -> comment.getId() == commentId)
                 .findFirst()

@@ -1,7 +1,7 @@
 package miu.edu.lab.service.v1;
 
-import miu.edu.lab.domain.v1.Comment;
-import miu.edu.lab.domain.v1.Post;
+import miu.edu.lab.domain.v1.CommentEntity;
+import miu.edu.lab.domain.v1.PostEntity;
 import miu.edu.lab.dto.v1.PostDto;
 
 import java.util.List;
@@ -11,13 +11,13 @@ public interface PostService {
 
     public PostDto getById(long id);
 
-    public void create(Long user_id, Post p);
+    public void create(Long user_id, PostEntity p);
 
     public void delete(long id);
 
-    public void update(long id, Post p);
+    public void update(long id, PostEntity p);
 
-    public void addPostByUserId(long id, Post post);
+    public void addPostByUserId(long id, PostEntity postEntity);
 
-    void addCommentToPost(Post post, Comment comment);
+    void addCommentToPost(PostEntity postEntity, CommentEntity comment);
 }

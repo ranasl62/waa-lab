@@ -1,6 +1,6 @@
 package miu.edu.lab.controller.v1;
 
-import miu.edu.lab.domain.v1.Post;
+import miu.edu.lab.domain.v1.PostEntity;
 import miu.edu.lab.dto.v1.PostDto;
 import miu.edu.lab.request.v1.CreatePostRequest;
 import miu.edu.lab.response.Response;
@@ -43,14 +43,14 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity<Response<Void>> create(@RequestBody CreatePostRequest createPostRequest) {
-        postService.create(createPostRequest.getUserId(), createPostRequest.getPost());
+        postService.create(createPostRequest.getUserId(), createPostRequest.getPostEntity());
         Response<Void> response = new Response<>(true, "Post retrieved successfully", null);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Response<Void>> update(@PathVariable long id, @RequestBody Post post) {
-        postService.update(id, post);
+    public ResponseEntity<Response<Void>> update(@PathVariable long id, @RequestBody PostEntity postEntity) {
+        postService.update(id, postEntity);
         Response<Void> response = new Response<>(true, "Post updated successfully", null);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

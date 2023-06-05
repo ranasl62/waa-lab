@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Response<T> {
     private boolean success;
+//    private int code;
     private String message;
     private T data;
 }

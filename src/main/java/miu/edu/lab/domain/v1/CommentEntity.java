@@ -11,7 +11,7 @@ import miu.edu.lab.domain.v1.common.BaseDomain;
 @AllArgsConstructor
 @Entity
 @Table(name = "comments")
-public class Comment extends BaseDomain {
+public class CommentEntity extends BaseDomain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
@@ -19,5 +19,5 @@ public class Comment extends BaseDomain {
 
     @ManyToOne
     @JoinColumn(name = "post_id")
-    Post post;
+    PostEntity postEntity;
 }

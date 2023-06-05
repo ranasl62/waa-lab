@@ -1,6 +1,6 @@
 package miu.edu.lab.controller.v1;
 
-import miu.edu.lab.domain.v1.Comment;
+import miu.edu.lab.domain.v1.CommentEntity;
 import miu.edu.lab.dto.v1.CommentDto;
 import miu.edu.lab.request.v1.CreateCommentRequest;
 import miu.edu.lab.response.Response;
@@ -48,7 +48,7 @@ public class CommentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Response<Void>> update(@PathVariable long id, @RequestBody Comment comment) {
+    public ResponseEntity<Response<Void>> update(@PathVariable long id, @RequestBody CommentEntity comment) {
         commentService.update(id, comment);
         Response<Void> response = new Response<>(true, "Comment updated successfully", null);
         return ResponseEntity.status(HttpStatus.OK).body(response);
