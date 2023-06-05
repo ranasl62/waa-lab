@@ -1,6 +1,7 @@
 package miu.edu.lab.controller.v1;
 
 import miu.edu.lab.domain.v1.User;
+import miu.edu.lab.dto.v1.CommentDto;
 import miu.edu.lab.dto.v1.PostDto;
 import miu.edu.lab.dto.v1.UserDto;
 import miu.edu.lab.response.Response;
@@ -71,7 +72,17 @@ public class UserController {
 
     @GetMapping("/has-multiple-posts")
     public ResponseEntity<Response<List<UserDto>>> getPost() {
-        Response<List<UserDto>> response = new Response<>(true, "User retrieved successfully who has multiple post", userService.getUsersWithMultiplePosts());
+        Response<List<UserDto>> response = new Response<>(true, "User retrieved successfully who has multiple post", userService.findByPostsSizeGreaterThan((long) 2));
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping("/{userId}/posts/{postId}/comments/{commentId}")
+    public ResponseEntity<Response<CommentDto>> getComment(
+            @PathVariable long userId,
+            @PathVariable long postId,
+            @PathVariable long commentId
+    ) {
+        Response<CommentDto> response = new Response<>(true, "Comment retrieved successfully by user id and post id", userService.getComment(userId, postId, commentId));
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

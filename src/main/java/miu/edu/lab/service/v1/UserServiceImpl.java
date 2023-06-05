@@ -1,12 +1,17 @@
 package miu.edu.lab.service.v1;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import miu.edu.lab.domain.v1.Comment;
+import miu.edu.lab.domain.v1.Post;
 import miu.edu.lab.domain.v1.User;
+import miu.edu.lab.dto.v1.CommentDto;
 import miu.edu.lab.dto.v1.PostDto;
 import miu.edu.lab.dto.v1.UserDto;
 import miu.edu.lab.helper.ListMapper;
 import miu.edu.lab.repo.v1.UserRepo;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,13 +51,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(long id, User p) {
-        Optional<User> optionalUser = userRepo.findById(id);
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            user.setName(p.getName());
-            userRepo.save(user);
+    public void update(long id, User user) {
+        User existingUser = userRepo.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with ID: " + id));
+        try {
+            BeanUtils.copyProperties(existingUser, user);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        userRepo.save(existingUser);
     }
 
     @Override
@@ -62,7 +69,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> getUsersWithMultiplePosts() {
-        return (List<UserDto>) listMapper.mapList(this.userRepo.getUsersWithMultiplePosts(), new UserDto());
+    public List<UserDto> findByPostsSizeGreaterThan(Long postSize) {
+        return (List<UserDto>) listMapper.mapList(this.userRepo.findByPostsSizeGreaterThan(postSize), new UserDto());
     }
+
+    public CommentDto getComment(long userId, long postId, long commentId) {
+        Optional<User> userOptional = userRepo.findById(userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            Post post = user.findPostById(postId);
+            if (post != null) {
+                Comment comment = post.findCommentById(commentId);
+                if (comment != null) {
+                    // Assuming CommentDto is a DTO class for Comment
+                    return modelMapper.map(comment, CommentDto.class);
+                }
+            }
+        }
+        return null;
+    }
+
 }

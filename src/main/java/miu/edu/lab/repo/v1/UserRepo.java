@@ -9,7 +9,8 @@ import java.util.List;
 
 @Repository
 public interface UserRepo extends JpaRepository<User, Long> {
-    @Query("SELECT u FROM User u WHERE SIZE(u.posts) > 1")
-    List<User> getUsersWithMultiplePosts();
+    @Query("SELECT u FROM User u WHERE SIZE(u.posts) > :postSize")
+    List<User> findByPostsSizeGreaterThan(Long postSize);
 
+    List<User> findByPostsTitle(String title);
 }

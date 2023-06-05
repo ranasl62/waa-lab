@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import miu.edu.lab.domain.v1.common.BaseDomain;
 
 import java.util.List;
 
@@ -12,13 +13,19 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class User extends BaseDomain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     String name;
 
-    @OneToMany
-    @JoinColumn(name = "id_user")
-    List<Post> posts;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Post> posts;
+
+    public Post findPostById(long postId) {
+        return posts.stream()
+                .filter(post -> post.getId() == postId)
+                .findFirst()
+                .orElse(null);
+    }
 }

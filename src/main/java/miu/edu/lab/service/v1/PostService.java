@@ -1,5 +1,6 @@
 package miu.edu.lab.service.v1;
 
+import miu.edu.lab.domain.v1.Comment;
 import miu.edu.lab.domain.v1.Post;
 import miu.edu.lab.dto.v1.PostDto;
 
@@ -10,9 +11,13 @@ public interface PostService {
 
     public PostDto getById(long id);
 
-    public void create(Post p);
+    public void create(Long user_id, Post p);
 
     public void delete(long id);
 
     public void update(long id, Post p);
+
+    public void addPostByUserId(long id, Post post);
+
+    void addCommentToPost(Post post, Comment comment);
 }
