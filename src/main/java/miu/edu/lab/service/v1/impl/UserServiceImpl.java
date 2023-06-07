@@ -8,7 +8,7 @@ import miu.edu.lab.domain.v1.UserEntity;
 import miu.edu.lab.dto.v1.CommentDto;
 import miu.edu.lab.dto.v1.PostDto;
 import miu.edu.lab.dto.v1.UserDto;
-import miu.edu.lab.helper.ListMapper;
+import miu.edu.lab.utils.ListMapper;
 import miu.edu.lab.repo.v1.UserRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;

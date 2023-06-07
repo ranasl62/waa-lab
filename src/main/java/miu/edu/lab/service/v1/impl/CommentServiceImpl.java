@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import miu.edu.lab.domain.v1.CommentEntity;
 import miu.edu.lab.domain.v1.PostEntity;
 import miu.edu.lab.dto.v1.CommentDto;
-import miu.edu.lab.helper.ListMapper;
+import miu.edu.lab.utils.ListMapper;
 import miu.edu.lab.repo.v1.CommentRepo;
 import miu.edu.lab.repo.v1.PostRepo;
 import org.modelmapper.ModelMapper;
