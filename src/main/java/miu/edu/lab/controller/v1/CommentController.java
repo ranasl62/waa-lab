@@ -2,8 +2,8 @@ package miu.edu.lab.controller.v1;
 
 import miu.edu.lab.domain.v1.CommentEntity;
 import miu.edu.lab.dto.v1.CommentDto;
-import miu.edu.lab.request.v1.CreateCommentRequest;
-import miu.edu.lab.response.Response;
+import miu.edu.lab.dto.v1.request.CreateCommentRequest;
+import miu.edu.lab.dto.v1.response.Response;
 import miu.edu.lab.service.v1.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

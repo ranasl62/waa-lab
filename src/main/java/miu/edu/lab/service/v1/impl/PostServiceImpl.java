@@ -1,4 +1,4 @@
-package miu.edu.lab.service.v1;
+package miu.edu.lab.service.v1.impl;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -6,6 +6,7 @@ import miu.edu.lab.domain.v1.CommentEntity;
 import miu.edu.lab.domain.v1.PostEntity;
 import miu.edu.lab.domain.v1.UserEntity;
 import miu.edu.lab.dto.v1.PostDto;
+import miu.edu.lab.service.v1.PostService;
 import miu.edu.lab.utils.ListMapper;
 import miu.edu.lab.repo.v1.PostRepo;
 import miu.edu.lab.repo.v1.UserRepo;

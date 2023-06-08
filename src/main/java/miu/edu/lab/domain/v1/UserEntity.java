@@ -16,8 +16,12 @@ import java.util.List;
 public class UserEntity extends BaseDomain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    String name;
+    private long id;
+    private String name;
+    private String email;
+    private String password;
+    private String firstname;
+    private String lastname;
 
     @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
     private List<PostEntity> postEntities;
@@ -28,4 +32,7 @@ public class UserEntity extends BaseDomain {
                 .findFirst()
                 .orElse(null);
     }
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable
+    private List<Role> roles;
 }

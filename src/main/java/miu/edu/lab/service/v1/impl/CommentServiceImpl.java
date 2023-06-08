@@ -1,10 +1,11 @@
-package miu.edu.lab.service.v1;
+package miu.edu.lab.service.v1.impl;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import miu.edu.lab.domain.v1.CommentEntity;
 import miu.edu.lab.domain.v1.PostEntity;
 import miu.edu.lab.dto.v1.CommentDto;
+import miu.edu.lab.service.v1.CommentService;
 import miu.edu.lab.utils.ListMapper;
 import miu.edu.lab.repo.v1.CommentRepo;
 import miu.edu.lab.repo.v1.PostRepo;

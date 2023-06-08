@@ -1,8 +1,8 @@
 package miu.edu.lab.service.v1.impl;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import edu.miu.springsecurity1.entity.Role;
-import edu.miu.springsecurity1.entity.User;
+import miu.edu.lab.domain.v1.Role;
+import miu.edu.lab.domain.v1.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +18,7 @@ public class AwesomeUserDetails implements UserDetails {
     private String password;
     private List<Role> roles;
 
-    public AwesomeUserDetails(User user) {
+    public AwesomeUserDetails(UserEntity user) {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.roles = user.getRoles();

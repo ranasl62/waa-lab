@@ -2,7 +2,7 @@ package miu.edu.lab.service.v2;
 
 import lombok.RequiredArgsConstructor;
 import miu.edu.lab.dto.v2.PostDtoV2;
-import miu.edu.lab.helper.ListMapper;
+import miu.edu.lab.utils.ListMapper;
 import miu.edu.lab.repo.v2.PostRepoV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

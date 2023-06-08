@@ -1,4 +1,4 @@
-package miu.edu.lab.helper;
+package miu.edu.lab.utils;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

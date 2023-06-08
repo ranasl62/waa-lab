@@ -1,6 +1,6 @@
 package miu.edu.lab.exception.v1;
 
-import miu.edu.lab.response.Response;
+import miu.edu.lab.dto.v1.response.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

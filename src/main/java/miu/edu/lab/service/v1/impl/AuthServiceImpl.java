@@ -1,16 +1,14 @@
 package miu.edu.lab.service.v1.impl;
 
-import edu.miu.springsecurity1.entity.dto.request.LoginRequest;
-import edu.miu.springsecurity1.entity.dto.response.LoginResponse;
-import edu.miu.springsecurity1.entity.dto.request.RefreshTokenRequest;
-import edu.miu.springsecurity1.util.JwtUtil;
-import edu.miu.springsecurity1.service.AuthService;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.spi.ErrorMessage;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
+import miu.edu.lab.dto.v1.request.LoginRequest;
+import miu.edu.lab.dto.v1.request.RefreshTokenRequest;
+import miu.edu.lab.dto.v1.response.LoginResponse;
+import miu.edu.lab.service.v1.AuthService;
+import miu.edu.lab.utils.JwtUtil;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -44,8 +42,7 @@ public class AuthServiceImpl implements AuthService {
 
         final String accessToken = jwtUtil.generateToken(userDetails);
         final String refreshToken = jwtUtil.generateRefreshToken(loginRequest.getEmail());
-        var loginResponse = new LoginResponse(accessToken, refreshToken);
-        return loginResponse;
+        return new LoginResponse(accessToken, refreshToken);
     }
 
     @Override

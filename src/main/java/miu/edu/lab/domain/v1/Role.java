@@ -1,12 +1,15 @@
 package miu.edu.lab.domain.v1;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Data;
-
-import jakarta.persistence.*;
+import miu.edu.lab.domain.v1.common.BaseDomain;
 
 @Entity
 @Data
-public class Role {
+public class Role extends BaseDomain {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

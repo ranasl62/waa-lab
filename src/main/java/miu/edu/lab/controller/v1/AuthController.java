@@ -1,11 +1,8 @@
 package miu.edu.lab.controller.v1;
-
-import edu.miu.springsecurity1.entity.dto.request.LoginRequest;
-import edu.miu.springsecurity1.entity.dto.response.LoginResponse;
-import edu.miu.springsecurity1.entity.dto.request.RefreshTokenRequest;
-import edu.miu.springsecurity1.service.AuthService;
-import lombok.extern.java.Log;
-import org.modelmapper.spi.ErrorMessage;
+import miu.edu.lab.dto.v1.request.LoginRequest;
+import miu.edu.lab.dto.v1.request.RefreshTokenRequest;
+import miu.edu.lab.dto.v1.response.LoginResponse;
+import miu.edu.lab.service.v1.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

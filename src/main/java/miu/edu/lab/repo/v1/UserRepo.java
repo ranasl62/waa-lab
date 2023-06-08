@@ -11,5 +11,8 @@ import java.util.List;
 public interface UserRepo extends JpaRepository<UserEntity, Long> {
     @Query("SELECT u FROM UserEntity u WHERE SIZE(u.postEntities) > :postSize")
     List<UserEntity> findByPostsSizeGreaterThan(Long postSize);
+
     List<UserEntity> findByPostEntitiesTitle(String title);
+
+    UserEntity findByEmail(String email);
 }

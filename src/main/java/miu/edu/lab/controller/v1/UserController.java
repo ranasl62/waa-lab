@@ -1,11 +1,11 @@
 package miu.edu.lab.controller.v1;
 
-import miu.edu.lab.aspect.v1.ExecutionTime;
+import miu.edu.lab.aspect.v1.annotation.ExecutionTime;
 import miu.edu.lab.domain.v1.UserEntity;
 import miu.edu.lab.dto.v1.CommentDto;
 import miu.edu.lab.dto.v1.PostDto;
 import miu.edu.lab.dto.v1.UserDto;
-import miu.edu.lab.response.Response;
+import miu.edu.lab.dto.v1.response.Response;
 import miu.edu.lab.service.v1.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,6 @@
 package miu.edu.lab.service.v1.impl;
 
-import edu.miu.springsecurity1.repository.UserRepo;
-import edu.miu.springsecurity1.service.impl.AwesomeUserDetails;
+import miu.edu.lab.repo.v1.UserRepo;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,8 +20,7 @@ public class AwesomeUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         var user = userRepo.findByEmail(username);
-        var userDetails = new AwesomeUserDetails(user);
-        return userDetails;
+        return new AwesomeUserDetails(user);
     }
 
 }

@@ -2,12 +2,13 @@ package miu.edu.lab.controller.v1;
 
 import miu.edu.lab.domain.v1.PostEntity;
 import miu.edu.lab.dto.v1.PostDto;
-import miu.edu.lab.request.v1.CreatePostRequest;
-import miu.edu.lab.response.Response;
+import miu.edu.lab.dto.v1.request.CreatePostRequest;
+import miu.edu.lab.dto.v1.response.Response;
 import miu.edu.lab.service.v1.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,6 +43,7 @@ public class PostController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     public ResponseEntity<Response<Void>> create(@RequestBody CreatePostRequest createPostRequest) {
         postService.create(createPostRequest.getUserId(), createPostRequest.getPostEntity());
         Response<Void> response = new Response<>(true, "Post retrieved successfully", null);
@@ -49,6 +51,7 @@ public class PostController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_CLIENT')")
     public ResponseEntity<Response<Void>> update(@PathVariable long id, @RequestBody PostEntity postEntity) {
         postService.update(id, postEntity);
         Response<Void> response = new Response<>(true, "Post updated successfully", null);

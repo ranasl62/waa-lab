@@ -1,4 +1,4 @@
-package miu.edu.lab.response;
+package miu.edu.lab.dto.v1.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

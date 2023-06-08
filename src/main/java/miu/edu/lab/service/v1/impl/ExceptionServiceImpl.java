@@ -1,8 +1,9 @@
-package miu.edu.lab.service.v1;
+package miu.edu.lab.service.v1.impl;
 
 import lombok.RequiredArgsConstructor;
 import miu.edu.lab.domain.v1.ExceptionEntity;
 import miu.edu.lab.repo.v1.ExceptionRepo;
+import miu.edu.lab.service.v1.ExceptionService;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;

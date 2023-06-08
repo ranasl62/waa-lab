@@ -1,4 +1,4 @@
-package miu.edu.lab.aspect.v1;
+package miu.edu.lab.aspect.v1.annotation;
 
 import java.lang.annotation.*;
 
